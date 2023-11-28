@@ -26,7 +26,7 @@ public class Menu extends JFrame {
         scoreEtq.setBounds(220, 10, 100, 30);
         add(scoreEtq);
 
-        BtnPrim = new PrimaryButton("Iniciar sesión");
+        BtnPrim = new PrimaryButton("Jugar");
         BtnPrim.setBounds(70, 70, 150, 40);
         add(BtnPrim);
 
