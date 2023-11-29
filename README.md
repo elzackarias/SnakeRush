@@ -9,6 +9,6 @@ Proyecto final de Programación sobre el juego retro Snake, adaptado a Java :3
 - José Zacarías - [@elzackarias](https://www.github.com/elzackarias)
 - Ieshuah Alvarez - [@ieshu666](https://github.com/ieshu666)
 - Marina Cortés
-- Alejandra Juárez
+- Alejandra Juárez - [@Rebldomakr0](https://github.com/Rebldomakr0)
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
