@@ -26,9 +26,11 @@ public class SecondaryButton extends JButton {
     protected void paintComponent(Graphics g) {
         if (getModel().isPressed()) {
             g.setColor(Color.WHITE.darker());
+            setForeground(Color.WHITE);
         } else if (getModel().isRollover()) {
             g.setColor(new Color(20, 21, 23));
         } else {
+            setForeground(new Color(99, 131, 250));
             g.setColor(Color.white);
         }
         // Dibujar el botón con bordes redondeados
