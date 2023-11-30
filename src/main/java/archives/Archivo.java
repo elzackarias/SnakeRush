@@ -87,6 +87,26 @@ public class Archivo extends JugadorObject {
         return false;
     }
 
-    // Falta la funcion que actualice el puntaje de un usuario en específico al
-    // momento de jugar y que por ende organice los jugadores por puntaje
+    // Función que permite actualizar el puntaje de un usuario dado su nombre y el
+    // nuevo puntaje
+    public static void actualizarPuntaje(String usuario, String puntaje) {
+        int n = listaJugadores.size();
+        for (int i = 0; i < n; i++) {
+            if (usuario.equals(jugadoresData[i].getUsuario())) {
+                jugadoresData[i].setPuntaje(puntaje);
+            }
+        }
+        organizarObjetos();
+    }
+
+    // Función que permite leer el puntaje de un usuario dado su nombre
+    public static String leerPuntaje(String usuario) {
+        int n = listaJugadores.size();
+        for (int i = 0; i < n; i++) {
+            if (usuario.equals(jugadoresData[i].getUsuario())) {
+                return jugadoresData[i].getPuntaje();
+            }
+        }
+        return "0";
+    }
 }
