@@ -18,11 +18,11 @@ public class Menu extends JFrame {
         tituloEtq.setBounds(130, 1, 100, 30);
         add(tituloEtq);
 
-        usuarioEtq = new JLabel("Usuario"); // Modificar con los archivos, la información de usuario y esas cosas :b
+        usuarioEtq = new JLabel(Archivo.jugadorActual.getUsuario()); // Modificar con los archivos, la información de usuario y esas cosas :b
         usuarioEtq.setBounds(10, 10, 150, 30);
         add(usuarioEtq);
 
-        scoreEtq = new JLabel("Score: 0"); // También modifcar esto y que el "0" sea puntuación por default 
+        scoreEtq = new JLabel("Puntaje: " + Archivo.jugadorActual.getPuntaje()); // También modifcar esto y que el "0" sea puntuación por default 
         scoreEtq.setBounds(220, 10, 100, 30);
         add(scoreEtq);
 
