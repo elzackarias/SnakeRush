@@ -101,7 +101,6 @@ public class Archivo extends JugadorObject {
     // nuevo puntaje
     public static void actualizarPuntaje(String usuario, String puntaje) {
         int n = listaJugadores.size();
-        System.out.println(n);
         for (int i = 0; i < n; i++) {
             try {
                 if (usuario.equals(jugadoresData[i].getUsuario())) {
