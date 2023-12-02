@@ -13,6 +13,7 @@ public class Archivo extends JugadorObject {
     // poder manipular la información que contiene cada jugador
     private static List<JugadorObject> listaJugadores = new ArrayList<>();
     private static JugadorObject[] jugadoresData;
+    public static JugadorObject jugadorActual;
 
     // Funcion que permite guardar los jugadores en un archivo serializable dentro
     // de la carpeta data en el archivo dataBase.ser
@@ -50,12 +51,16 @@ public class Archivo extends JugadorObject {
             intercambiado = false;
 
             for (int i = 1; i < n; i++) {
-                if (Integer.parseInt(jugadoresData[i - 1].getPuntaje()) < Integer
-                        .parseInt(jugadoresData[i].getPuntaje())) {
-                    temp = jugadoresData[i - 1];
-                    jugadoresData[i - 1] = jugadoresData[i];
-                    jugadoresData[i] = temp;
-                    intercambiado = true;
+                try {
+                    if (Integer.parseInt(jugadoresData[i - 1].getPuntaje()) < Integer
+                            .parseInt(jugadoresData[i].getPuntaje())) {
+                        temp = jugadoresData[i - 1];
+                        jugadoresData[i - 1] = jugadoresData[i];
+                        jugadoresData[i] = temp;
+                        intercambiado = true;
+                    }
+                } catch (NullPointerException e) {
+                    return;
                 }
             }
             n--;
@@ -78,10 +83,15 @@ public class Archivo extends JugadorObject {
     public static boolean comprobarCredenciales(String usuario, String contrasenia) {
         int n = listaJugadores.size();
         for (int i = 0; i < n; i++) {
-            if (usuario.equals(jugadoresData[i].getUsuario())) {
-                if (contrasenia.equals(jugadoresData[i].contrasenia)) {
-                    return true;
+            try {
+                if (usuario.equals(jugadoresData[i].getUsuario())) {
+                    if (contrasenia.equals(jugadoresData[i].contrasenia)) {
+                        jugadorActual = jugadoresData[i];
+                        return true;
+                    }
                 }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
             }
         }
         return false;
@@ -91,9 +101,14 @@ public class Archivo extends JugadorObject {
     // nuevo puntaje
     public static void actualizarPuntaje(String usuario, String puntaje) {
         int n = listaJugadores.size();
+        System.out.println(n);
         for (int i = 0; i < n; i++) {
-            if (usuario.equals(jugadoresData[i].getUsuario())) {
-                jugadoresData[i].setPuntaje(puntaje);
+            try {
+                if (usuario.equals(jugadoresData[i].getUsuario())) {
+                    jugadoresData[i].setPuntaje(puntaje);
+                }
+            } catch (NullPointerException e) {
+                return;
             }
         }
         organizarObjetos();
@@ -108,5 +123,17 @@ public class Archivo extends JugadorObject {
             }
         }
         return "0";
+    }
+
+    // A partir de un ID "mayor a menor puntaje" obtiene el usuario
+    public static String getUsuarioByID(int ID) {
+        organizarObjetos();
+        return jugadoresData[ID].getUsuario();
+    }
+
+    // A partir de un ID "mayor a menor puntaje" obtiene el usuario
+    public static String getPuntajeByID(int ID) {
+        organizarObjetos();
+        return jugadoresData[ID].getPuntaje();
     }
 }
